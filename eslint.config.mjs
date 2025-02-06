@@ -1,5 +1,6 @@
 // @ts-check
 
+import vitest from '@vitest/eslint-plugin'
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
@@ -13,4 +14,7 @@ export default withNuxt(
   // {
   //   ...
   // }
+  {
+    ...vitest.configs.recommended,
+  },
 )
