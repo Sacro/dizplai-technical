@@ -3,9 +3,10 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/test-utils/module',
-    '@nuxtjs/tailwindcss',
+    '@nuxt/ui',
   ],
   devtools: { enabled: true },
+  css: ['~/assets/css/main.css'],
   compatibilityDate: '2024-11-01',
   eslint: {
     config: {
