@@ -8,12 +8,17 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepare": "husky",
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "db0": "^0.2.3",
+    "drizzle-orm": "^0.39.2",
     "nuxt": "^3.15.4",
     "vue": "latest",
     "vue-router": "latest"
@@ -28,6 +33,7 @@
     "@vitest/eslint-plugin": "^1.1.26",
     "@vitest/ui": "^3.0.5",
     "@vue/test-utils": "^2.4.6",
+    "drizzle-kit": "^0.30.4",
     "eslint": "^9.19.0",
     "happy-dom": "^17.0.0",
     "husky": "^9.1.7",
