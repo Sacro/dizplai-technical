@@ -13,7 +13,6 @@ export const useDrizzle = () => {
   const client = db.getInstance()
 
   const drizzleDb = drizzle<typeof schema>({
-    casing: 'snake_case',
     client,
     schema,
   })
@@ -33,4 +32,6 @@ export const useDrizzle = () => {
   return drizzleDb
 }
 
-export type User = typeof schema.users.$inferSelect
+export type Poll = typeof schema.polls.$inferSelect
+export type Response = typeof schema.responses.$inferSelect
+export type Vote = typeof schema.votes.$inferSelect
