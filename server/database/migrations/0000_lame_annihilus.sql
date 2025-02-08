@@ -9,7 +9,7 @@ CREATE TABLE `responses` (
 	`order` integer NOT NULL,
 	`poll_id` text NOT NULL,
 	FOREIGN KEY (`poll_id`) REFERENCES `polls`(`id`) ON UPDATE no action ON DELETE no action,
-	CONSTRAINT "question_minimum" CHECK("responses"."order" > 0),
+	CONSTRAINT "question_minimum" CHECK("responses"."order" > -1),
 	CONSTRAINT "question_maximum" CHECK("responses"."order" < 8)
 );
 --> statement-breakpoint

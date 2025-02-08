@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "1aeb56f3-fc21-4d73-9785-cb98bc874089",
+  "id": "90bf0c68-1b82-4bff-a2e4-d72b797cf268",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "polls": {
@@ -90,7 +90,7 @@
       "checkConstraints": {
         "question_minimum": {
           "name": "question_minimum",
-          "value": "\"responses\".\"order\" > 0"
+          "value": "\"responses\".\"order\" > -1"
         },
         "question_maximum": {
           "name": "question_maximum",

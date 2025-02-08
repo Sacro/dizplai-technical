@@ -27,7 +27,7 @@ describe('database tests', () => {
   })
 
   describe('responses', () => {
-    it('requires order to be above 0', async ({ expect, sqlite }) => {
+    it('requires order to be equal to or above 0', async ({ expect, sqlite }) => {
       expect.assertions(1)
 
       await expect(sqlite.transaction(async (tx) => {
@@ -37,7 +37,7 @@ describe('database tests', () => {
 
         return tx.insert(schema.responses).values([{
           response: 'test response',
-          order: 0,
+          order: -1,
           poll_id: result[0].id,
         }])
       })).rejects.toThrowErrorMatchingInlineSnapshot(`[SqliteError: CHECK constraint failed: question_minimum]`)
@@ -69,12 +69,12 @@ describe('database tests', () => {
 
         return tx.insert(schema.responses).values([{
           response: 'test response',
-          order: 1,
+          order: 0,
           poll_id: result[0].id,
         },
         {
           response: 'test response',
-          order: 1,
+          order: 0,
           poll_id: result[0].id,
         }])
       })).rejects.toThrowErrorMatchingInlineSnapshot(`[SqliteError: UNIQUE constraint failed: responses.poll_id, responses.order]`)
@@ -106,11 +106,11 @@ describe('database tests', () => {
       const polls = await sqlite.insert(schema.polls).values({ question: 'test question' }).returning()
       const responses = await sqlite.insert(schema.responses).values([{
         response: 'first response',
-        order: 1,
+        order: 0,
         poll_id: polls[0].id,
       }, {
         response: 'second response',
-        order: 2,
+        order: 1,
         poll_id: polls[0].id,
       }]).returning()
 

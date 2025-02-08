@@ -13,7 +13,7 @@ export const responses = sqliteTable('responses', {
 
   poll_id: text().notNull().references(() => polls.id),
 }, table => [
-  check('question_minimum', sql`${table.order} > 0`),
+  check('question_minimum', sql`${table.order} > -1`),
   check('question_maximum', sql`${table.order} < 8`),
   unique('question_order_unique_per_poll').on(table.poll_id, table.order),
 ])
