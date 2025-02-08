@@ -3,7 +3,7 @@ import { dirname, join } from 'node:path'
 import { drizzle } from 'drizzle-orm/better-sqlite3'
 import { migrate } from 'drizzle-orm/better-sqlite3/migrator'
 
-import * as schema from '../database/schema'
+import * as schema from '../database'
 
 export { sql, eq, and, or } from 'drizzle-orm'
 export const tables = schema
@@ -13,6 +13,7 @@ export const useDrizzle = () => {
   const client = db.getInstance()
 
   const drizzleDb = drizzle<typeof schema>({
+    casing: 'snake_case',
     client,
     schema,
   })
@@ -23,6 +24,8 @@ export const useDrizzle = () => {
 
     migrate(drizzleDb, {
       // nuxt runs from .nuxt/dev
+      // TODO:
+      // migrationsFolder: path.resolve('./server/database/migrations'),
       migrationsFolder: join(__dirname, '../../server/database/migrations'),
     })
   }
