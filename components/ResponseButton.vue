@@ -5,10 +5,6 @@ interface Props {
 }
 
 const { id, response } = defineProps<Props>()
-
-const emit = defineEmits<{
-  changed: [id: string]
-}>()
 </script>
 
 <template>
@@ -19,7 +15,6 @@ const emit = defineEmits<{
       name="response"
       :value="id"
       class="hidden peer"
-      @change="emit('changed', ($event.target as HTMLInputElement).value)"
     >
     <label
       :for="id"

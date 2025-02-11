@@ -1,8 +1,16 @@
 <script setup lang="ts">
-const { data } = await useFetch('/api/poll/jkna3xbfu4uligs3uc23m8zs')
+const route = useRoute()
+const { id: pollId } = route.params
 
-const logit = (foo) => {
-  console.log(foo)
+const { data } = await useFetch(`/api/poll/${pollId}`)
+
+const selectedVote = ref<string>()
+
+const onSubmit = async () => {
+  await $fetch(`/api/response/${selectedVote.value}/vote`, {
+    method: 'POST',
+  })
+  return navigateTo(`/results/${pollId}`)
 }
 </script>
 
@@ -21,7 +29,7 @@ const logit = (foo) => {
     <div>
       <form
         class="flex flex-col gap-6 items-center"
-        @submit.prevent="logit"
+        @submit.prevent="onSubmit"
       >
         <ul class="flex flex-col gap-4">
           <ResponseButton
@@ -29,6 +37,7 @@ const logit = (foo) => {
             :id="response.id"
             :key="response.id"
             :response="response.response"
+            @click="selectedVote = response.id"
           />
         </ul>
         <SubmitButton />

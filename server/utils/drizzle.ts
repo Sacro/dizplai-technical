@@ -5,7 +5,7 @@ import { migrate } from 'drizzle-orm/better-sqlite3/migrator'
 
 import * as schema from '../database'
 
-export { sql, eq, and, or } from 'drizzle-orm'
+export { sql, eq, and, or, count } from 'drizzle-orm'
 export const tables = schema
 
 export const useDrizzle = () => {
