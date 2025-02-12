@@ -1,8 +1,16 @@
 # Dizplai Coding Challenge
 
+## Instructions
+
+- Check the code out
+- run `pnpm install` to check out the dependencies
+- run `pnpm run db:migrate` to build the database, in `./.data/db.sqlite3`
+- run `pmpm dev` to bring the server up, `http://localhost:3000` by default
+- run `pnpm test` to run the tests using [Vitest](https://vitest.dev/)
+
 ## Requirements 
 
-### Polls can haveween 2 and 7 options
+### Polls can have between 2 and 7 options
 - This is enforced using Zod on the API endpoint
 - There was an attempt to enforce it at the database level, but I don't think you can do a CHECK that references other columns
 
@@ -12,6 +20,7 @@
 ### Polls and votes should be stored in a database of some sort
 - An sqlite database is being used, stored in `./.data/db.sqlite3`
 - Migration scripts are in `./server/database/migrations`, generated via Drizzle (an ORM)
+- Migrations are automated for tests, manual otherwise
 
 ### New polls should be created through an API
 - A RESTful API is available on `/api/polls`, for POSTing 
