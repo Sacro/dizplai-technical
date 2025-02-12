@@ -1,75 +1,29 @@
-# Nuxt Minimal Starter
+# Dizplai Coding Challenge
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Requirements 
 
-## Setup
+### Polls can haveween 2 and 7 options
+- This is enforced using Zod on the API endpoint
+- There was an attempt to enforce it at the database level, but I don't think you can do a CHECK that references other columns
 
-Make sure to install dependencies:
+### The website should be responsive
+- Tailwind allows this, though I've not actually implemented multiple breakpoints
 
-```bash
-# npm
-npm install
+### Polls and votes should be stored in a database of some sort
+- An sqlite database is being used, stored in `./.data/db.sqlite3`
+- Migration scripts are in `./server/database/migrations`, generated via Drizzle (an ORM)
 
-# pnpm
-pnpm install
+### New polls should be created through an API
+- A RESTful API is available on `/api/polls`, for POSTing 
 
-# yarn
-yarn install
+### An API should be available to view individual votes for a given poll and the time the vote was made
+- An endpoint is available at `/api/polls/:pollId/votes`, it will give this 
 
-# bun
-bun install
-```
+### There should be an example of how you would test front and backend code.
+- There are database tests in `./server/database/database.test.ts` 
+- There is a frontend component test in `./components/SubmitButton.test.ts`
+- There is a page test in `./pages/polls/[id].test.ts`, however it doesn't work yet.
+- It would also be quite trivial to add tests to the frontend using Playwright/Cypress etc
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### A README should be provided explaining how to run any code to allow us to test the solution
+- You're looking at it! 
